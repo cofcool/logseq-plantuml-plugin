@@ -2,7 +2,7 @@
   "logseq": {
     "id": "logseq-plantuml-plugin",
     "title": "logseq-plantuml-plugin",
-    "icon": "./plantuml.png"
+    "icon": "./icon.png"
   },
   "name": "logseq-plantuml-plugin",
   "version": "1.0.0",
