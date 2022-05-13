@@ -27,8 +27,9 @@ jobs:
           cp README.md package.json icon.png ${{ env.PLUGIN_NAME }}
           mv dist ${{ env.PLUGIN_NAME }}
           ls
-          echo "::set-output name=tag_name::$(git tag --sort version:refname | tail -n 1)"
-          zip -r ${{ env.PLUGIN_NAME }}-${{ steps.build.outputs.tag_name }}.zip ${{ env.PLUGIN_NAME }}
+          ver=`git tag --sort version:refname | tail -n 1`
+          zip -r ${{ env.PLUGIN_NAME }}-$ver.zip ${{ env.PLUGIN_NAME }}
+          echo "::set-output name=tag_name::$(echo $ver)"
       - name: Create Release
         uses: ncipollo/release-action@v1
         id: create_release
