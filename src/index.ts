@@ -1,6 +1,6 @@
 import "@logseq/libs";
 import { callSettings } from "./callSettings";
-import { renderMermaid } from "./convert";
+import { render } from "./convert";
 
 const uniqueIdentifier = () =>
   Math.random()
@@ -8,20 +8,20 @@ const uniqueIdentifier = () =>
     .replace(/[^a-z]+/g, "");
 
 const main = () => {
-  console.log("logseq-mermaid-plugin loaded");
+  console.log("logseq-plantuml-plugin loaded");
 
   callSettings();
 
-  logseq.Editor.registerSlashCommand("Draw mermaid diagram", async () => {
+  logseq.Editor.registerSlashCommand("Draw plantuml diagram", async () => {
     await logseq.Editor.insertAtEditingCursor(
-      `{{renderer :mermaid_${uniqueIdentifier()}}}`
+      `{{renderer :plantuml_${uniqueIdentifier()}}}`
     );
 
     const currBlock = await logseq.Editor.getCurrentBlock();
 
     await logseq.Editor.insertBlock(
       currBlock.uuid,
-      `\`\`\`mermaid 
+      `\`\`\`plantuml 
 \`\`\``,
       {
         sibling: false,
@@ -33,19 +33,19 @@ const main = () => {
   logseq.App.onMacroRendererSlotted(async ({ slot, payload }) => {
     const [type, colour] = payload.arguments;
     const id = type.split("_")[1]?.trim();
-    const mermaidId = `mermaid_${id}`;
+    const plantumlId = `plantuml_${id}`;
 
-    if (!type.startsWith(":mermaid_")) return;
+    if (!type.startsWith(":plantuml_")) return;
 
     const dataBlock = await logseq.Editor.getBlock(payload.uuid, {
       includeChildren: true,
     });
 
-    const mermaidUUID = dataBlock.children[0]["uuid"];
+    const plantumlUUID = dataBlock.children[0]["uuid"];
 
     logseq.provideModel({
       async show() {
-        renderMermaid(type, payload, colour, mermaidUUID);
+        render(type, payload, colour, plantumlUUID);
       },
     });
 
@@ -66,7 +66,7 @@ const main = () => {
     `);
 
     logseq.provideUI({
-      key: `${mermaidId}`,
+      key: `${plantumlId}`,
       slot,
       reset: true,
       template: `<button data-on-click="show" class="renderBtn">Render</button>`,
