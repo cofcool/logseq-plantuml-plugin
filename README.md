@@ -14,7 +14,7 @@ If not available in the marketplace, [download the latest release](https://githu
 
 # Usage
 
-To start, simply trigger it using `/Draw plantuml diagram`. Then add your mermaid syntax in the code block and click `Render`.
+To start, simply trigger it using `/Draw plantuml diagram`. Then add your plantuml syntax in the code block and click `Render`.
 
 # Todo
 
