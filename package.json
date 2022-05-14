@@ -5,7 +5,7 @@
     "icon": "./icon.png"
   },
   "name": "logseq-plantuml-plugin",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "Render PlantUML in Logseq",
   "main": "dist/index.html",
   "targets": {
