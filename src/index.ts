@@ -50,18 +50,8 @@ const main = () => {
     });
 
     logseq.provideStyle(`
-      .renderBtn {
-        border: 1px solid black;
-        border-radius: 8px;
-        padding: 3px;
-        font-size: 80%;
-        background-color: white;
-        color: black;
-      }
-
-      .renderBtn:hover {
-        background-color: black;
-        color: white;
+      .render-btn {
+          border: 1px dashed var(--ls-border-color);
       }
     `);
 
@@ -69,7 +59,7 @@ const main = () => {
       key: `${plantumlId}`,
       slot,
       reset: true,
-      template: `<button data-on-click="show" class="renderBtn">Render</button>`,
+      template: `<button data-on-click="show" class="button render-btn">Render</button>`,
     });
   });
 };
